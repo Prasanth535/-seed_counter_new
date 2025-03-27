@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seed Counter</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Upload Seed Image for Counting</h1>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <label>Select Seed Type:</label>
+        <select name="seed_type">
+            <option value="rice">Rice</option>
+            <option value="maize">Maize</option>
+            <option value="millet">Finger Millet</option>
+        </select>
+        
+        <label>Upload Image:</label>
+        <input type="file" name="file" accept=".png, .jpg, .jpeg">
+        
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if seed_count is not none %}
+        <h2>Detected {{ seed_type }} seeds: {{ seed_count }}</h2>
+    {% endif %}
+</body>
+</html>
