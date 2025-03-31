@@ -1,22 +1,40 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    margin: 50px;
+    margin: 30px;
+    background-color: #f5f5f5;
 }
 
 h1 {
-    color: #333;
+    background-color: #2c3e50; /* Dark blue background */
+    color: white;
+    font-size: 28px;
+    padding: 15px;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.subheading {
+    font-size: 20px;
+    color: #2c3e50;
+    margin-bottom: 20px;
 }
 
 form {
     margin: 20px auto;
-    width: 300px;
+    padding: 20px;
+    background: white;
+    width: 320px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 input, select, button {
     margin: 10px;
-    padding: 8px;
+    padding: 10px;
     width: 100%;
+    border-radius: 5px;
 }
 
 button {
@@ -24,4 +42,40 @@ button {
     color: white;
     border: none;
     cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: darkgreen;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.uploaded-image {
+    width: 300px;
+    margin: 10px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+}
+
+.note {
+    margin-top: 20px;
+    text-align: left;
+    background: white;
+    padding: 15px;
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    margin-top: 30px;
+    font-size: 14px;
+    background: #2c3e50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
 }
