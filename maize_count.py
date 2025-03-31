@@ -14,7 +14,7 @@ def count_maize_seeds(image_path):
 
     # Filter based on area (Maize specific values)
     lowest_area = 4000
-    highest_area = 35924.5
+    highest_area = 36000
     filtered_contours = [c for c in contours if lowest_area <= cv2.contourArea(c) <= highest_area]
 
     return len(filtered_contours)
