@@ -22,6 +22,7 @@ def allowed_file(filename):
 def index():
     seed_count = None
     seed_type = None
+    image_filename = None
 
     if request.method == 'POST':
         seed_type = request.form['seed_type']
@@ -32,7 +33,8 @@ def index():
         if file.filename == '' or not allowed_file(file.filename):
             return render_template("index.html", error="Invalid file type!")
 
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        image_filename = file.filename
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], image_filename)
         file.save(file_path)
 
         if seed_type == "rice":
@@ -42,9 +44,13 @@ def index():
         elif seed_type == "millet":
             seed_count = count_millet_seeds(file_path)
 
-        return render_template("index.html", seed_count=seed_count, seed_type=seed_type)
+        return render_template("index.html", seed_count=seed_count, seed_type=seed_type, image_filename=image_filename)
 
     return render_template("index.html")
+
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 if __name__ == "__main__":
     app.run(debug=True)
