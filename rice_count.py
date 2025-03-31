@@ -11,4 +11,15 @@ def count_rice_seeds(image_path):
     binary = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel, iterations=2)
 
     contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    return len(contours)  # Return the total seed count
+
+    # Filter based on area (Rice specific values)
+    lowest_area = 2891
+    highest_area = 9258
+    filtered_contours = [c for c in contours if lowest_area <= cv2.contourArea(c) <= highest_area]
+
+    # Draw bounding rectangles on detected seeds
+    for contour in contours:
+        (x, y, w, h) = cv2.boundingRect(contour)
+        cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)  # Red box
+    
+    return len(contours), image  # Return count and processed image
