@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Seed Counter</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seed Counting Portal</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}?v=2">
 </head>
 <body>
-    <h1>Upload Seed Image for Counting</h1>
+    <h1>SMART SEED COUNTER</h1>
+    <h2 class="subheading">Upload Seed Image for Counting</h2>
 
     {% if error %}
-        <p style="color: red;">{{ error }}</p>
+        <p class="error">{{ error }}</p>
     {% endif %}
 
     <form method="POST" enctype="multipart/form-data">
@@ -18,15 +21,37 @@
             <option value="maize">Maize</option>
             <option value="millet">Finger Millet</option>
         </select>
-        
+
         <label>Upload Image:</label>
-        <input type="file" name="file" accept=".png, .jpg, .jpeg">
-        
+        <input type="file" name="file" accept=".png, .jpg, .jpeg" required>
+
         <button type="submit">Upload</button>
     </form>
+
+    {% if image_path %}
+        <h2>Uploaded Image:</h2>
+        <img src="{{ image_path }}" alt="Uploaded Seed Image" class="uploaded-image">
+    {% endif %}
 
     {% if seed_count is not none %}
         <h2>Detected {{ seed_type }} seeds: {{ seed_count }}</h2>
     {% endif %}
+
+    <div class="note">
+        <h3>Important Notes on Image Capture:</h3>
+        <ul>
+            <li>📸 Capture the image of the seeds on a white background.</li>
+            <li>⚠️ Ensure seeds maintain some distance from each other for accurate counting.</li>
+            <li>☀️ Avoid shadows while capturing the image.</li>
+            <li>📱 Use a document scanner app for better clarity.</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>Created by <b>Savirigana Prasanth</b></p>
+        <p>📧 Mail: <a href="mailto:saviriganaprasanth2826@gmail.com">saviriganaprasanth2826@gmail.com</a></p>
+        <p>🐙 GitHub: <a href="https://github.com/Prasanth535" target="_blank">github.com/Prasanth535</a></p>
+        <p>🔗 LinkedIn: <a href="https://www.linkedin.com/in/savirigana-prasanth-1552701a7" target="_blank">LinkedIn Profile</a></p>
+    </footer>
 </body>
 </html>
